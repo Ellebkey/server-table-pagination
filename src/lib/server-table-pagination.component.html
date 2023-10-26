@@ -1,0 +1,77 @@
+<div id="pagination-component" class="flex items-center justify-between flex-wrap">
+  <!-- Search section -->
+  <ng-container *ngIf="showInputSearch">
+    <div class="flex items-center h-16 p-4 pl-0 border-b border-gray-200">
+      <div class="mr-3">
+        <span class="text-gray-600 hidden md:flex">Search:</span>
+      </div>
+      <div class="relative flex-grow">
+        <input
+          id="search-input"
+          class="form-input block w-full h-10 pr-10 pl-3 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          type="text"
+          placeholder="{{inputPlaceHolderText}}"
+          [(ngModel)]="searchString"
+          (ngModelChange)="onInputType.next($event)">
+        <div id="search-icon" class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <i class="text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </i>
+        </div>
+      </div>
+      <div class="ml-4">
+        <span (click)="clearInput()">
+          <i class="cursor-pointer text-gray-600 hover:text-gray-800" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </i>
+        </span>
+      </div>
+    </div>
+  </ng-container>
+
+
+  <!-- Pagination section -->
+  <div class="flex items-center">
+    <div class="hidden md:flex text-gray-600 block mr-3">
+      <span>Show :</span>
+    </div>
+    <div>
+      <select id="select-page" class="form-control text-gray-600 mr-4" (change)="onPageNumberSelected($event)" [(ngModel)]="limit">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+    <div class="flex items-center h-10">
+      <a href="javascript: void(0)" (click)="goFirst()" [ngClass]="{'control-disable': currentPage === 1}" class="page-button-controller text-gray-500 h-10 w-10">
+        <i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+        </i>
+      </a>
+      <a href="javascript: void(0)" (click)="goPrevious()" [ngClass]="{'control-disable': currentPage === 1}" class="page-button-controller text-gray-500 h-10 w-10">
+        <i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </i>
+      </a>
+      <!-- Page buttons -->
+      <ng-container *ngFor="let item of pages">
+        <a href="javascript: void(0)" (click)="goPage(item.number)" [ngClass]="isCurrentPage(item)" class="page-button-controller text-gray-500 h-10 w-10">
+          <span>{{item.number}}</span>
+        </a>
+      </ng-container>
+      <a href="javascript: void(0)" (click)="goNext()" [ngClass]="{'control-disable': currentPage === chunk}" class="page-button-controller text-gray-500 h-10 w-10">
+        <i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </i>
+      </a>
+      <a href="javascript: void(0)" (click)="goLast()" [ngClass]="{'control-disable': currentPage === chunk}" class="page-button-controller text-gray-500 h-10 w-10">
+        <i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+        </i>
+      </a>
+    </div>
+    <div class="hidden md:flex text-gray-600 ml-4">
+      <span>Item&nbsp;<b>{{offset + 1}}</b>&nbsp; to&nbsp;<b>{{lastItemNumberOnPage}}</b>&nbsp; of&nbsp;<b>{{count}}</b></span>
+    </div>
+  </div>
+</div>

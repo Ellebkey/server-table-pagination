@@ -1,0 +1,32 @@
+{
+  "name": "server-table-pagination",
+  "version": "1.0.3",
+  "description": "A server-side pagination component for Angular applications.",
+  "author": "ellebkey@gmail.com",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^16.2.0",
+    "@angular/core": "^16.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "keywords": [
+    "angular",
+    "tailwindcss",
+    "pagination",
+    "server-side",
+    "table",
+    "component"
+  ],
+
+  "bugs": {
+    "url": "https://github.com/Ellebkey/server-table-pagination/issues"
+  },
+  "homepage": "https://github.com/Ellebkey/server-table-pagination#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ellebkey/server-table-pagination.git"
+  },
+  "sideEffects": false
+}

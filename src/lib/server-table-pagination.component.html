@@ -1,14 +1,14 @@
-<div id="pagination-component" class="flex items-center justify-between flex-wrap">
+<div id="pagination-component" class="flex items-center justify-between flex-wrap border-b border-gray-200">
   <!-- Search section -->
   <ng-container *ngIf="showInputSearch">
-    <div class="flex items-center h-16 p-4 pl-0 border-b border-gray-200">
+    <div class="flex items-center h-16 p-4 pl-0">
       <div class="mr-3">
         <span class="text-gray-600 hidden md:flex">Search:</span>
       </div>
       <div class="relative flex-grow">
         <input
           id="search-input"
-          class="form-input block w-full h-10 pr-10 pl-3 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+          class="form-input block w-full h-10 pr-10 pl-3 bg-white border border-gray-300 focus:outline-none focus:ring focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
           type="text"
           placeholder="{{inputPlaceHolderText}}"
           [(ngModel)]="searchString"

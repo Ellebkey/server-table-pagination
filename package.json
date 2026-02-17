@@ -1,6 +1,6 @@
 {
   "name": "server-table-pagination",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A server-side pagination component for Angular applications.",
   "author": "ellebkey@gmail.com",
   "license": "MIT",

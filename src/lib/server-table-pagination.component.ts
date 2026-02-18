@@ -5,9 +5,10 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  SimpleChange,
+  SimpleChanges,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ElementRef
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -23,6 +24,7 @@ export class ServerTablePaginationComponent implements OnInit, OnChanges, AfterV
   @Input() count = 0;
   @Input() inputPlaceHolderText = '';
   @Input() showInputSearch = false;
+  @Input() scrollElementId = '';
   @Output() filterSearchChanged: EventEmitter<{}> = new EventEmitter();
 
   public pages: any;
@@ -37,6 +39,7 @@ export class ServerTablePaginationComponent implements OnInit, OnChanges, AfterV
 
   constructor(
     private cdRef: ChangeDetectorRef,
+    private elRef: ElementRef,
   ) {
 
   }
@@ -65,10 +68,32 @@ export class ServerTablePaginationComponent implements OnInit, OnChanges, AfterV
     this.cdRef.detectChanges();
   }
 
-  ngOnChanges(changes: { [propKey: string]: SimpleChange }): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.firstLoad) {
+      const prevPage = this.currentPage;
+
+      // Always sync currentPage from offset
+      if (this.limit > 0) {
+        this.currentPage = Math.floor(this.offset / this.limit) + 1;
+      }
+
       this.pagesConstructor();
+
+      if (this.currentPage < prevPage) {
+        this.scrollToTop();
+      }
     }
+  }
+
+  private scrollToTop(): void {
+    if (this.scrollElementId) {
+      const scrollEl = document.getElementById(this.scrollElementId);
+      if (scrollEl) {
+        scrollEl.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   updateEmitter(limit: number, offset: number, searchText: string): void {

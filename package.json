@@ -1,6 +1,6 @@
 {
   "name": "server-table-pagination",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "A server-side pagination component for Angular applications.",
   "author": "ellebkey@gmail.com",
   "license": "MIT",
@@ -27,5 +27,14 @@
     "type": "git",
     "url": "git+https://github.com/Ellebkey/server-table-pagination.git"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "devDependencies": {
+    "@angular/common": "^18.0.1",
+    "@angular/compiler": "^18.0.1",
+    "@angular/compiler-cli": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@angular/forms": "^18.0.1",
+    "ng-packagr": "^18.2.1",
+    "typescript": "~5.4"
+  }
 }

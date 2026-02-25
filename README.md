@@ -3,7 +3,7 @@
 A server-side pagination component for Angular applications. This component utilizes Tailwind CSS for styling, ensure you have it installed in your project.
 
 ## Version
-1.0.5
+1.1.0
 
 [![npm](https://img.shields.io/npm/v/server-table-pagination)](https://www.npmjs.com/package/server-table-pagination)
 
